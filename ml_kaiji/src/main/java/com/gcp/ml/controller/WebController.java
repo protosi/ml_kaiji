@@ -22,5 +22,13 @@ public class WebController {
 		mav.addObject("context_path", context_path);
 		return mav;
 	}
+	
+	@RequestMapping("game")
+	public ModelAndView game(HttpServletRequest request, HttpServletResponse response)
+	{
+		ModelAndView mav = new ModelAndView("game");
+		mav.addObject("context_path", context_path);
+		return mav;
+	}
 
 }

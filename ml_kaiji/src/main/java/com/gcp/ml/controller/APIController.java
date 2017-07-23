@@ -40,8 +40,12 @@ public class APIController {
 		recv.put("action", action);
 		
 		dataFormat.setRecv(recv);
+		if(action >= 0)
+			dataFormat.setResult(100, "success");
+		else
+			dataFormat.setResult(-1, "fail");
 		
-		return recv;
+		return dataFormat;
 	}
 
 }

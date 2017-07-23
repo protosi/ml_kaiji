@@ -27,7 +27,7 @@ public class RandomBot implements Bot {
 		if(tempRand.size() == 0)
 			return -1;
 		
-		return rand.nextInt(tempRand.size());
+		return tempRand.get( rand.nextInt(tempRand.size()));
 	}
 
 }

@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+body {margin: 0;}
+.bot_ui > img {width: 100px; height: 100px;}
+.user_ui > img {width: 100px; height: 100px; cursor: pointer;}
+.user_ui{width: 100%; height: 150px; background-color: black; position:fixed; bottom: 0; padding: 25px; box-sizing: border-box; }
+.bot_ui{width: 100%; height: 150px; background-color: black; position:fixed; top: 0; padding: 25px; box-sizing: border-box; text-align: right;}
+
+.score, .text {display: inline-block; font-size: 50px; color: #FFF; margin-right: 50px;}
+.bot_ui > .name {float: left; font-size: 50px; color: #FFF; margin-right: 50px;}
+.user_ui > .name {float: right; font-size: 50px; color: #FFF; margin-right: 50px;}
+div.game{display:inline-block; font-size: 50px; color: #FFF; margin-right: 50px;}
