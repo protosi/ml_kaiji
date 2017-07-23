@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+body
+{
+	margin: 0
+}
+
+div.content
+{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: #ffb66f;
+	display: -webkit-flex;    
+	display: -ms-flexbox;
+	display: flex;
+	
+	-webkit-align-items: center;    
+	-ms-flex-align: center;
+	align-items: center; 
+}
+
+div.center_frame
+{
+	height: 100%;
+	min-height: 500px;
+	width: 100%;
+	background-color: #000;
+	background-image: url("../img/gcp.jpg");
+	background-size: cover;
+	
+	display: inline-block;
+	position: relative;
+}
+
+ 
