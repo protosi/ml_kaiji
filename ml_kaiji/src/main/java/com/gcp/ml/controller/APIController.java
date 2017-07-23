@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gcp.dataobject.DataFormat;
-import com.gcp.ml.bot.Bot;
+import com.gcp.ml.bot.MLBot;
 import com.gcp.ml.requestbody.APIRequestBody;
 
 @RestController
@@ -17,7 +17,7 @@ import com.gcp.ml.requestbody.APIRequestBody;
 public class APIController {
 	
 	@Autowired
-	Bot bot;
+	MLBot bot;
 	
 	@RequestMapping("echoChoice")
 	public Object echoChoice(@RequestBody APIRequestBody apiBody)
