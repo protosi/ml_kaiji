@@ -118,7 +118,6 @@ var Game = {
 
 	, makeUserChoice : function(action)
 	{
-		alert(action);
 		if (action < 0 || action >= this.emDeck.length)
 		{
 			alert("잘못된 선택입니다.");
