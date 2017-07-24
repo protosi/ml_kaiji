@@ -9,7 +9,8 @@ var Game = {
 	, myWin : 0
 	, emWin : 0
 	, count : 0
-	
+	, done : false
+	, winFlag : -1
 	, makeChoiceUrl : "/kaiji/api/makeChoice"
 	
 	, initGame : function(){
@@ -19,7 +20,8 @@ var Game = {
 		this.myWin = 0;
 		this.emWin = 0;
 		this.count = 0;
-		
+		this.done = false;
+		this.winFlag = 0;
 		this.render();
 		
 	}
@@ -43,7 +45,8 @@ var Game = {
 		{
 			return false;
 		}
-			
+		// 0 draw, 1 computer, 2 user
+		this.winFlag = 0;	
 		
 		botAction = this.makeBotChoice();
 		
@@ -63,14 +66,18 @@ var Game = {
 		if(action == 0)
 		{
 			if(botAction == 0)
-			{}
+			{
+				this.winFlag = 0;
+			}
 			else if(botAction == 1)
 			{
 				this.myWin++;
+				this.winFlag = 1;
 			}
 			else if(botAction == 2)
 			{
 				this.emWin++;
+				this.winFlag = 2;
 			}
 		}
 		// 1은 바위
@@ -79,12 +86,16 @@ var Game = {
 			if(botAction == 0)
 			{
 				this.emWin++;
+				this.winFlag = 2;
 			}
 			else if(botAction == 1)
-			{}
+			{
+				this.winFlag = 0;
+			}
 			else if(botAction == 2)
 			{
 				this.myWin++;
+				this.winFlag = 1;
 			}
 		}
 		// 2는 보자기
@@ -93,22 +104,49 @@ var Game = {
 			if(botAction == 0)
 			{
 				this.myWin++;
+				this.winFlag = 1;
 			}
 			else if(botAction == 1)
 			{
 				this.emWin++;
+				this.winFlag = 2;
 			}
 			else if(botAction == 2)
-			{}
+			{
+				this.winFlag = 0;
+			}
 		}
-		
 		this.count++;
-		
-		if(this.count >= 9 || this.myWin >= 5 || this.emWin >= 5)
-		{
-			this.endGame();
-		}
 		this.render();
+		
+		if(this.winFlag == 0)
+		{
+			this.modal(this.count + "라운드", "비겼습니다.");
+		}
+		else if(this.winFlag == 1)
+		{
+			this.modal(this.count + "라운드", "컴퓨터가 이겼습니다.");
+		}
+		else if(this.winFlag == 2)
+		{
+			this.modal(this.count + "라운드", "당신이 이겼습니다.");
+		}
+		
+		
+		
+		if(this.count>=9)
+		{
+			if(this.myWin > this.emWin)
+				this.modal("최종 결과", "컴퓨터의 승리!");
+			else if(this.myWin < this.emWin)
+				this.modal("최종 결과", "당신의 승리!");
+			else 
+				this.modal("최종 결과", "무승부입니다!");
+			this.initGame();
+		}
+		
+		
+		
 	}
 	, endGame : function()
 	{
@@ -159,6 +197,13 @@ var Game = {
 		
 		return action;
 	}
+	, modal: function(title, text)
+	  {
+		 alert(title + "\n" + text);
+	     //$(".modal-title").text(title);
+	     //$(".modal-body").text(text);
+	     //$("#myModal").modal("show");
+	  }
 
 	// 화면을 그리는 뭐시기가 여기 들어 가겠지 모
 	, render : function()
@@ -172,6 +217,42 @@ var Game = {
 		$(".user_ui").find(".bawi").text(this.emDeck[1]);
 		$(".user_ui").find(".bo").text(this.emDeck[2]);
 		$(".user_ui").find(".score").text(this.emWin);
+		
+		if(this.count <= 0)
+		{
+			$("div.img").attr("class", "img init");
+		}
+		else if (this.count >= 9)
+		{
+			if(this.myWin > this.emWin)
+			{
+				$("div.img").attr("class", "img defeat");
+			}
+			else if(this.myWin < this.emWin)
+			{
+				$("div.img").attr("class", "img victory");
+			}
+			else if(this.myWin == this.emWin)
+			{
+				$("div.img").attr("class", "img draw2");
+			}
+		}
+		else
+		{
+			if(this.winFlag == 1)
+			{
+				$("div.img").attr("class", "img lose");
+			}
+			else if(this.winFlag == 2)
+			{
+				$("div.img").attr("class", "img win");
+			}
+			else if(this.winFlag == 0)
+			{
+				$("div.img").attr("class", "img draw");
+			}
+		}
+		
 	}
 };
 

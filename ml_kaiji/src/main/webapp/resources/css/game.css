@@ -9,4 +9,16 @@ body {margin: 0;}
 .score, .text {display: inline-block; font-size: 50px; color: #FFF; margin-right: 50px;}
 .bot_ui > .name {float: left; font-size: 50px; color: #FFF; margin-right: 50px;}
 .user_ui > .name {float: right; font-size: 50px; color: #FFF; margin-right: 50px;}
+
+
+
 div.game{display:inline-block; font-size: 50px; color: #FFF; margin-right: 50px;}
+
+div.img{background-size: cover;position: absolute;height: 100%;width: 100%;background-attachment: fixed;background-position: center;}
+.img.lose{background-image: url("../img/lose.gif");}
+.img.draw{background-image: url("../img/draw.jpg");}
+.img.win{background-image: url("../img/win.jpg"); }
+.img.init{background-image: url("../img/init.jpg");}
+.img.victory{background-image: url("../img/victory.jpg");}
+.img.defeat{background-image: url("../img/defeat.gif");}
+.img.draw2{background-image: url("../img/draw2.gif");}
