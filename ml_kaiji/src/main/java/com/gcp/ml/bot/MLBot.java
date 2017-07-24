@@ -26,6 +26,8 @@ public class MLBot implements Bot {
 	
 	public MLBot()
 	{
+		System.out.print(profile);
+		System.out.print(dir);
 		if(profile.equals("local"))
 		{
 			URL url = MLBot.class.getResource("/com/gcp/ml/bot/saved_model.pb");
