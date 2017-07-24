@@ -9,6 +9,15 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
       
+---
+spring:
+  profiles: local
 ml:
-  #path: C:/Users/3F8VJ32/git/ml_kaiji/ml_kaiji/target/classes/com/gcp/ml/bot/
+  path: C:/Users/3F8VJ32/git/ml_kaiji/ml_kaiji/target/classes/com/gcp/ml/bot/
+  
+---
+
+spring:
+  profiles: dev
+ml:
   path: /game/ml/kaiji/
