@@ -16,7 +16,7 @@ import org.tensorflow.Tensor;
 
 @Component
 public class MLBot implements Bot {
-	SavedModelBundle bundle;
+	SavedModelBundle bundle = null;
 	
 	@Value("${spring.profiles}")
 	String profile;
@@ -24,10 +24,12 @@ public class MLBot implements Bot {
 	@Value("${ml.path}")
 	String dir;
 	
-	public MLBot()
+	
+	
+	public void initState()
 	{
-		System.out.print(profile);
-		System.out.print(dir);
+		System.out.println(profile);
+		System.out.println(dir);
 		if(profile.equals("local"))
 		{
 			URL url = MLBot.class.getResource("/com/gcp/ml/bot/saved_model.pb");
@@ -44,6 +46,9 @@ public class MLBot implements Bot {
 	@Override
 	public int makeChoice(List<Integer> myDeck, List<Integer> emDeck, int myWin, int emWin, int count) {
 		// TODO Auto-generated method stub
+		
+		if (bundle == null)
+			initState();
 		
 		// 1판은 무조건 래
 		if(count ==0)

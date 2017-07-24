@@ -2,22 +2,42 @@ server:
   port: 8080
   context-path: /kaiji
 
-  
+
 spring:
   mvc:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
-      
+
 ---
+
+server:
+  port: 8080
+  context-path: /kaiji
+
+
 spring:
   profiles: local
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
 ml:
   path: C:/Users/3F8VJ32/git/ml_kaiji/ml_kaiji/target/classes/com/gcp/ml/bot/
+
   
 ---
 
+server:
+  port: 8080
+  context-path: /kaiji
+
+
 spring:
   profiles: dev
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
 ml:
   path: /game/ml/kaiji/
