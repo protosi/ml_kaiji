@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.tensorflow.Graph;
 import org.tensorflow.SavedModelBundle;
@@ -16,11 +17,25 @@ import org.tensorflow.Tensor;
 @Component
 public class MLBot implements Bot {
 	SavedModelBundle bundle;
+	
+	@Value("${spring.profiles}")
+	String profile;
+	
+	@Value("${ml.path}")
+	String dir;
+	
 	public MLBot()
 	{
-		URL url = MLBot.class.getResource("/com/gcp/ml/bot/saved_model.pb");
-    	System.out.println(url.toString());
-		bundle = SavedModelBundle.load(url.toString().replaceAll("file:/", "").replaceAll("saved_model.pb", ""), "serve");
+		if(profile.equals("local"))
+		{
+			URL url = MLBot.class.getResource("/com/gcp/ml/bot/saved_model.pb");
+	    	System.out.println(url.toString());
+			bundle = SavedModelBundle.load(url.toString().replaceAll("file:/", "").replaceAll("saved_model.pb", ""), "serve");
+		}
+		else
+		{
+			bundle = SavedModelBundle.load(dir, "serve");
+		}
 	}
 	
 
